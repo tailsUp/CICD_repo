@@ -23,7 +23,7 @@ const create = async newBLog => {
     const config = {
       headers: { Authorization: token },
     }
-    const response = await axios.post(baseUrl, newBLog, config)
+    const response = await axios.post(baseUrl2, newBLog, config)
     return response.data
   }
   catch (error)
@@ -40,7 +40,7 @@ const create = async newBLog => {
 const update = async (ID, blog) => {
   try
   {
-    const request = await axios.put(`${baseUrl}/${ID}`, blog)
+    const request = await axios.put(`${baseUrl2}/${ID}`, blog)
     return request.status
   }
   catch(error)
@@ -53,7 +53,7 @@ const update = async (ID, blog) => {
  * Funktio hakee kaikki blogit backendistä ja palauttaa ne käyttäjän ruudulle.
  */
 const getAll = async () => {
-  const response = await axios.get(baseUrl).catch(error => {
+  const response = await axios.get(baseUrl2).catch(error => {
     console.log('fail: ', error)
     return []
   })
@@ -66,7 +66,7 @@ const getAll = async () => {
 const getBlogWithID = async (ID) => {
   try
   {
-    const request = await axios.get(`${baseUrl}/${ID}`)
+    const request = await axios.get(`${baseUrl2}/${ID}`)
     return request.data
   }
   catch (error)
@@ -83,7 +83,7 @@ const deleteBlog = async (ID, token) => {
   try
   {
     axios.defaults.headers.common['token'] = 'Bearer ' + token
-    const status = await axios.delete(`${baseUrl}/${ID}`)
+    const status = await axios.delete(`${baseUrl2}/${ID}`)
     axios.defaults.headers.common['token'] = ''
     return status.status
   }
