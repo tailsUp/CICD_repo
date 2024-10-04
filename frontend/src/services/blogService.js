@@ -1,6 +1,7 @@
 import axios from 'axios'
 import newBLog from '../components/NewBlog'
 const baseUrl = 'http://localhost:3001/api/blogs'
+const baseUrl2 = 'https://cicd-repo.onrender.com/api/blogs'
 
 let token
 
