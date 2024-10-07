@@ -1,19 +1,19 @@
 module.exports = {
-    'env': {
+    env: {
         'commonjs': true,
         'es2021': true,
         'node': true
     },
-    'overrides': [
+    overrides: [
         {
-            'env': {
+            env: {
                 'node': true
             },
-            'files': [
+            files: [
                 '.eslintrc.{js,cjs}'
             ],
-            'parserOptions': {
-                'sourceType': 'script'
+            parserOptions: {
+                sourceType: 'script'
             }
         }
     ],
@@ -24,8 +24,8 @@ module.exports = {
     plugins: [
         '@stylistic/js'
     ],
-    'extends': 'eslint:recommended',
-    'rules': {
+    extends: 'eslint:recommended',
+    rules: {
         '@stylistic/js/indent': [
             'error',
             2
@@ -42,7 +42,7 @@ module.exports = {
             'error',
             'never'
         ],
-        'eqeqeq': 'error',
+        eqeqeq: 'error',
         'no-trailing-spaces': 'error',
         'object-curly-spacing': [
             'error', 'always'
