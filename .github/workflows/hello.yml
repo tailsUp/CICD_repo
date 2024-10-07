@@ -17,4 +17,4 @@ jobs:
           date
       - name: Directory content
         run: |
-          ls ${{ github.workspace }}
+          ls -l
