@@ -12,7 +12,9 @@
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "testCypress": "NODE_ENV=test nodemon index.js",
     "eslint": "eslint './**/*.{js,jsx}'",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypress run"
   },
   "author": "Sorsa",
   "license": "ISC",
