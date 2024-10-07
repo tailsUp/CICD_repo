@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "testCypress": "NODE_ENV=test nodemon index.js",
-    "eslint": "eslint './**/*.{js,jsx}'"
+    "eslint": "eslint './**/*.{js,jsx}'",
+    "build": "webpack --mode production"
   },
   "author": "Sorsa",
   "license": "ISC",
