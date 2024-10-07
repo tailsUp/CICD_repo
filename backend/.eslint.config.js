@@ -17,6 +17,7 @@ module.exports = {
             }
         }
     ],
+    ignorePatterns: ["temp.js", "config/*", "dist/", "webpack.config.js", "node_modules/"],
     'parserOptions': {
         'ecmaVersion': 'latest'
     },
