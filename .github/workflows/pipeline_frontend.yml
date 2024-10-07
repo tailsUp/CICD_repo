@@ -1,4 +1,4 @@
-name: Deployment pipeline
+name: Deployment pipeline frontend
 
 on:
   push:
@@ -9,12 +9,12 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  simple_deployment_pipeline:
+  frontend_deployment_pipeline:
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: 'backend'
+        working-directory: 'frontend'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
