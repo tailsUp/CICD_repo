@@ -2,6 +2,14 @@ const Blogs = require('../models/blogs')
 const User = require('../models/users')
 
 /**
+ * Lisätty testi että ei valita: "Your test suite must contain at least one test.
+ */
+test('Your test suite must contain at least one test.', () => {
+  const result = 'Your test suite must contain at least one test.'
+  expect(result).toBe('Your test suite must contain at least one test.')
+})
+
+/**
  * Lyhyt lista blogi-olioita ilman userId:tä.
  */
 const initialBlogs = [

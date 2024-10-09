@@ -1,7 +1,8 @@
 const supertest = require('supertest')
 const bcrypt = require('bcrypt')
 const User = require('../models/users')
-const helper = require('./test_helper')
+//const helper = require('test_helper')
+const helper = require('./test_helper.test')
 const app = require('../app')
 const api = supertest(app)
 
@@ -9,6 +10,7 @@ const api = supertest(app)
  * Kaikki viikon 4 pakolliset käyttäjätestit.
  */
 describe('All tests relating to app-users', () => {
+
   beforeEach(async () => {
     await User.deleteMany({})
 

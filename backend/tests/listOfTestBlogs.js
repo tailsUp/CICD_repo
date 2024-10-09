@@ -73,7 +73,25 @@ const listWithOneBlog = [
     }
 ]
 
+const initialBlogs = [
+    {
+        title: 'TEST TITLE 111',
+        author: 'TESTU AUTHOR 111',
+        url: 'WWW.TEST.COM/111',
+        likes: 111,
+        user: '',
+    },
+    {
+        title: 'TEST TITLE 22',
+        author: 'TESTU AUTHOR 222',
+        url: 'WWW.TEST.COM/222',
+        likes: 222,
+        user: '',
+    },
+]
+
 module.exports = {
     blogs,
-    listWithOneBlog
+    listWithOneBlog,
+    initialBlogs
 }
