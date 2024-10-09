@@ -24,22 +24,22 @@ logger.info('address in use at PROCESS for db is: ', process.env.MONGODB_URI)
 
 logger.info('node_env is: ', process.env.NODE_ENV)
 
-if (process.env.NODE_ENV === 'test') 
+if (process.env.NODE_ENV === 'test')
 {
-    const testingRouter = require('./controllers/testing')
-    app.use('/api/testing', testingRouter)
+  const testingRouter = require('./controllers/testing')
+  app.use('/api/testing', testingRouter)
 }
 
 /**
  * Funktio yhdistää applikaation tietokantaan.
  */
 mongoose.connect(config.MONGODB_URI)
-    .then(() => {
-        logger.info('connected to MongoDB')
-    })
-    .catch((error) => {
-        logger.error('error connection to MongoDB:', error.message)
-    })
+  .then(() => {
+    logger.info('connected to MongoDB')
+  })
+  .catch((error) => {
+    logger.error('error connection to MongoDB:', error.message)
+  })
 
 app.use(cors())
 app.use(express.static('build'))
