@@ -28,17 +28,17 @@ jobs:
         run: npm run build
       #- name: test
       #  run: npm run test
-      - name: e2e tests
-        uses: cypress-io/github-action@v5
-        with:
-          command: npm run test:e2e
-          start: npm run start-prod
-          wait-on: http://localhost:3003
-      - name: Trigger deployment
-        env:
-          deploy_url: ${{ secrets.DEPLOY_HOOK_URL }}
-        run: |
-          curl "$deploy_url"
+      #- name: e2e tests
+      #  uses: cypress-io/github-action@v5
+      #  with:
+      #    command: npm run test:e2e
+      #    start: npm run start-prod
+      #    wait-on: http://localhost:3003
+      #- name: Trigger deployment
+      #  env:
+      #    deploy_url: ${{ secrets.DEPLOY_HOOK_URL }}
+      #  run: |
+      #    curl "$deploy_url"
   backend_deployment_pipeline:
     needs: [frontend_deployment_pipeline]
     if: ${{ github.event_name == 'push' }}
@@ -55,6 +55,14 @@ jobs:
         run: npm install
       - name: Check style (lint)
         run: npm run eslint
+      - name: test
+        run: npm run test
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          command: npm run test:e2e
+          start: npm run start-prod
+          wait-on: http://localhost:3003
   tag_release:
     needs: [backend_deployment_pipeline]
     runs-on: ubuntu-20.04
