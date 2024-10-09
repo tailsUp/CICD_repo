@@ -10,10 +10,11 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import FullBlog from '/Users/sorsa/Desktop/github/hyo_fullstack_kurssi/viikko_5/blogs/frontend/src/components/FullBlogInfo'
+//import FullBlog from '/Users/sorsa/Desktop/github/hyo_fullstack_kurssi/viikko_5/blogs/frontend/src/components/FullBlogInfo'
+import FullBlog from '../FullBlogInfo.jsx'
 
 describe('Testing that bloglist view is ok (FullBlogInfo)', () => {
-  let container
+  let container = null
   const mockHandler = jest.fn()
   beforeEach(() => {
 
