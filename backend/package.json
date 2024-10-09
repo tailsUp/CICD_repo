@@ -9,7 +9,7 @@
     "build:ui": "rm -rf build && cd ../frontend && npm run build && cp -r build ../backend",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
     "lint": "eslint .",
-    "test": "NODE_ENV=test jest --verbose --runInBand",
+    "test": "NODE_ENV=test jest --verbose --runInBand --config jest.config.js",
     "testCypress": "NODE_ENV=test nodemon index.js",
     "eslint": "eslint './**/*.{js,jsx}'",
     "build": "webpack --mode production",
