@@ -55,6 +55,7 @@ jobs:
           command: npm run test:e2e
           start: npm run start-prod
           wait-on: http://localhost:3001
+          config: baseUrl=http://localhost:3001
   tag_release:
     needs: [backend_deployment_pipeline]
     runs-on: ubuntu-20.04
