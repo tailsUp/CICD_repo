@@ -2,7 +2,8 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Togglable from '/Users/sorsa/Desktop/github/hyo_fullstack_kurssi/viikko_5/blogs/frontend/src/components/Togglable'
+//import Togglable from '/Users/sorsa/Desktop/github/hyo_fullstack_kurssi/viikko_5/blogs/frontend/src/components/Togglable'
+import Togglable from '../Togglable.jsx'
 
 describe('<Togglable />', () => {
   let container

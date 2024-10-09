@@ -2,7 +2,8 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Blog from '/Users/sorsa/Desktop/github/hyo_fullstack_kurssi/viikko_5/blogs/frontend/src/components/Blog.jsx'
+//import Blog from '/Users/sorsa/Desktop/github/hyo_fullstack_kurssi/viikko_5/blogs/frontend/src/components/Blog.jsx'
+import Blog from '../Blog.jsx'
 
 test('renders content', () => {
   const blog = {
