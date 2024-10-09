@@ -51,6 +51,7 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v5
         env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
           TEST_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
           TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
           SECRET: ${{ secrets.SECRET }}
