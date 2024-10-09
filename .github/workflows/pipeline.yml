@@ -50,16 +50,16 @@ jobs:
       #    SECRET: ${{ SECRET }}
       - name: e2e tests
         uses: cypress-io/github-action@v5
-          env:
-            TEST_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
-            TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
-            SECRET: ${{ secrets.SECRET }}
-            PORT :${{ secrets.PORT }}
+        env:
+          TEST_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
+          TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
+          SECRET: ${{ secrets.SECRET }}
+          PORT: ${{ secrets.PORT }}
         with:
           working-directory: 'backend'
           command: npm run test:e2e
           start: npm run start-prod
-          #start: npm run dev
+          #wstart: npm run dev
           wait-on: http://localhost:3001
   tag_release:
     needs: [backend_deployment_pipeline]
