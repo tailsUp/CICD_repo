@@ -1,4 +1,4 @@
-import blogService from '../services/blogService'
+//import blogService from '../services/blogService'
 import Button2 from './Button2'
 
 const divID = 'divBlogRest'

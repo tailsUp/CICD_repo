@@ -1,6 +1,6 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/login'
-const baseUrl2 = 'https://cicd-repo.onrender.com/:3001/api/login'
+//const baseUrl = 'http://localhost:3001/api/login'
+//const baseUrl2 = 'https://cicd-repo.onrender.com/:3001/api/login'
 const baseUrl3 = 'https://cicd-repo.onrender.com/api/login'
 
 const login = async credentials => {

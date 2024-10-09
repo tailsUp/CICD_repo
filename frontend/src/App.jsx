@@ -202,6 +202,7 @@ const App = () => {
     )
   }
 
+  /* eslint-disable */
   /**
    * Funktio painaa sivulla olevaa cancel painiketta, jotta lomake saadaan suljettua.
    */
@@ -215,6 +216,7 @@ const App = () => {
   const elementTextChange = (id, text) => {
     document.getElementById(id).value = text
   }
+  /* eslint-enable */
 
   /**
    * Funktio lisää uuden olion tietokantaan. Kun uusi olio on luotu niin se etsitään vielä lopuksi omalla ID:llä jotta

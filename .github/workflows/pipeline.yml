@@ -9,7 +9,38 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  frontend_deployment_pipeline:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: 'frontend'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies (npm install)
+        run: npm install
+      - name: Check style (lint)
+        run: npm run eslint
+      - name: build
+        run: npm run build
+      - name: test
+        run: npm run test
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          command: npm run test:e2e
+          start: npm run start-prod
+          wait-on: http://localhost:3003
+      - name: Trigger deployment
+        env:
+          deploy_url: ${{ secrets.DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
   backend_deployment_pipeline:
+    needs: [frontend_deployment_pipeline]
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-20.04
     defaults:
@@ -24,21 +55,6 @@ jobs:
         run: npm install
       - name: Check style (lint)
         run: npm run eslint
-      #- name: build
-      #  run: npm run build
-      #- name: test
-      #  run: npm run test
-      #- name: e2e tests
-      #  uses: cypress-io/github-action@v5
-      #  with:
-      #    command: npm run test:e2e
-      #    start: npm run start-prod
-      #    wait-on: http://localhost:3003
-      - name: Trigger deployment
-        env:
-          deploy_url: ${{ secrets.DEPLOY_HOOK_URL }}
-        run: |
-          curl "$deploy_url"
   tag_release:
     needs: [backend_deployment_pipeline]
     runs-on: ubuntu-20.04
