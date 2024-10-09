@@ -12,7 +12,6 @@ let ROOT = ''
  */
 describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
     beforeEach(async () => {
-        jest.useFakeTimers({ advanceTimers: true });
         await Blogs.deleteMany({})                                                  //Poistetaan vanhat
         ROOT = await Users.collection.findOne({"username": 'root'})                 //Haetaan rootkäyttäjä
         const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
