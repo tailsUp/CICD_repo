@@ -11,23 +11,22 @@ let ROOT = ''
  * Kaikki viikon 4 testit liittyen blogien luomiseen, muokkaamiseen, poistamiseen jne.
  */
 describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
-  /*
+
   beforeEach(async () => {
     await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
     await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
   })
-  */
 
   test('TEST 1: blogs are returned as json', async () => {
 
-    await Blogs.deleteMany({})                                                  //Poistetaan vanhat
+    /*await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     console.log('ROOT:', ROOT)
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
     console.log('testBLogs: ', testBlogs)
-    await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
+    await Blogs.insertMany(testBlogs)*/                                           //Laitetaan blogit tietokantaan Vikko4Test
 
 
     await api
@@ -36,12 +35,12 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
       .expect('Content-Type', /application\/json/)
   })
 
-  /*test('TEST 2: initalBlogs matches the db response in length', async () => {
+  test('TEST 2: initalBlogs matches the db response in length', async () => {
 
-    await Blogs.deleteMany({})                                                  //Poistetaan vanhat
+    /*await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
-    await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
+    await Blogs.insertMany(testBlogs)      */                                     //Laitetaan blogit tietokantaan Vikko4Test
 
     const response = await api.get('/api/blogs')
     expect(response.body).toHaveLength(helper.initialBlogs.length)
@@ -49,10 +48,10 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
 
   test('TEST 3: returned blog contains title with right title', async () => {
 
-    await Blogs.deleteMany({})                                                  //Poistetaan vanhat
+    /*await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
-    await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
+    await Blogs.insertMany(testBlogs)     */                                      //Laitetaan blogit tietokantaan Vikko4Test
 
     const response = await api.get('/api/blogs')
     const contents = response.body.map(r => r.title)
@@ -61,10 +60,10 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
 
   test('TEST 4: new blog-object can be saved ', async () => {
 
-    await Blogs.deleteMany({})                                                  //Poistetaan vanhat
+    /*await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
-    await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
+    await Blogs.insertMany(testBlogs)       */                                    //Laitetaan blogit tietokantaan Vikko4Test
 
     const newBlog =
         {
@@ -91,10 +90,10 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
 
   test('TEST 5: blog-object without title CAN NOT be added', async () => {
 
-    await Blogs.deleteMany({})                                                  //Poistetaan vanhat
+    /*await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
-    await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
+    await Blogs.insertMany(testBlogs)    */                                       //Laitetaan blogit tietokantaan Vikko4Test
 
     const newBlogs =
         {
@@ -117,10 +116,10 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
 
   test('TEST 6: a specific blog can be viewed', async () => {
 
-    await Blogs.deleteMany({})                                                  //Poistetaan vanhat
+    /*await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
-    await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
+    await Blogs.insertMany(testBlogs) */                                          //Laitetaan blogit tietokantaan Vikko4Test
 
     const blogsAtStart = await helper.blogsInDb()
     const blogToView = blogsAtStart[0]
@@ -134,10 +133,10 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
 
   test('TEST 7: blog can be DELETED', async () => {
 
-    await Blogs.deleteMany({})                                                  //Poistetaan vanhat
+    /*await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
-    await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
+    await Blogs.insertMany(testBlogs)            */                               //Laitetaan blogit tietokantaan Vikko4Test
 
     const blogsAtStart = await helper.blogsInDb()
     const blogToDelete = blogsAtStart[0]
@@ -158,10 +157,10 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
 
   test('TEST 8: objects identifying id field is called id', async () => {
 
-    await Blogs.deleteMany({})                                                  //Poistetaan vanhat
+    /*await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
-    await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
+    await Blogs.insertMany(testBlogs)*/                                           //Laitetaan blogit tietokantaan Vikko4Test
 
     const response = await api.get('/api/blogs')
     const contents = response.body.map(r => Object.keys(r))
@@ -170,10 +169,10 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
 
   test('TEST 9: new object without likes has its likes set to zero automatically', async () => {
 
-    await Blogs.deleteMany({})                                                  //Poistetaan vanhat
+    /*await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
-    await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
+    await Blogs.insertMany(testBlogs)*/                                           //Laitetaan blogit tietokantaan Vikko4Test
 
     const newBlogs =
         {
@@ -192,7 +191,7 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
     const blogsAtEnd = await helper.blogsInDb()
     const last = blogsAtEnd[blogsAtEnd.length - 1]
     expect(last.likes).toEqual(0)
-  })*/
+  })
 
   afterAll(async () => {
     await mongoose.connection.close()
