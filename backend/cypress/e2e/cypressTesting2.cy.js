@@ -1,14 +1,14 @@
 /* eslint-disable */
-describe('Pokedex', function() {
+describe('BLOG LogIn', function() {
   it('front page can be opened', function() {
     cy.visit('http://localhost:3001')
-    cy.contains('ivysaur')
-    cy.contains('Pokémon and Pokémon character names are trademarks of Nintendo.')
+    cy.contains('Open application')
   })
 
   it('link can be accessed', function() {
     cy.visit('http://localhost:3001')
-    cy.contains('ivysaur').click()
-    cy.contains('chlorophyll')
+    cy.get('#inputUsername').type('username 1')
+    cy.get('#inputPassword').type('salasana')
+    cy.get('#buttonLogin').click()
   })
 })
