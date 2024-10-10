@@ -13,20 +13,20 @@ test('Your test suite must contain at least one test.', () => {
  * Lyhyt lista blogi-olioita ilman userId:tä.
  */
 const initialBlogs = [
-    {
-        title: 'TEST TITLE 111',
-        author: 'TESTU AUTHOR 111',
-        url: 'WWW.TEST.COM/111',
-        likes: 111,
-        user: '',
-    },
-    {
-        title: 'TEST TITLE 22',
-        author: 'TESTU AUTHOR 222',
-        url: 'WWW.TEST.COM/222',
-        likes: 222,
-        user: '',
-    },
+  {
+    title: 'TEST TITLE 111',
+    author: 'TESTU AUTHOR 111',
+    url: 'WWW.TEST.COM/111',
+    likes: 111,
+    user: '',
+  },
+  {
+    title: 'TEST TITLE 22',
+    author: 'TESTU AUTHOR 222',
+    url: 'WWW.TEST.COM/222',
+    likes: 222,
+    user: '',
+  },
 ]
 
 const nonExistingId = async () => {
@@ -51,7 +51,7 @@ const blogsInDb = async () => {
 const usersInDb = async () => {
   const users = await User.find({})
   return users.map(u => u.toJSON())
-} 
+}
 
 /**
  * Funktio asettaa blogilistalla oleviin blogi-olioihin käyttäjätunnukset ja palauttaa 
@@ -63,10 +63,10 @@ const usersInDb = async () => {
 const setUserIdForBlogs = (userID, blogs) => {
   blogs.forEach(blog => {
     blog.user = userID
-  });
+  })
   return blogs
 }
 
 module.exports = {
-    initialBlogs, nonExistingId, blogsInDb, usersInDb, setUserIdForBlogs
+  initialBlogs, nonExistingId, blogsInDb, usersInDb, setUserIdForBlogs
 }

@@ -24,7 +24,9 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
 
     await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
+    console.log('ROOT:', ROOT)
     const testBlogs = helper.setUserIdForBlogs(ROOT._id, helper.initialBlogs)   //Asetetaan root_id blogeille.
+    console.log('testBLogs: ', testBlogs)
     await Blogs.insertMany(testBlogs)                                           //Laitetaan blogit tietokantaan Vikko4Test
 
 
