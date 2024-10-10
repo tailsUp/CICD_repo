@@ -11,18 +11,26 @@ const api = supertest(app)
  */
 describe('All tests relating to app-users', () => {
 
+  /*
   beforeEach(async () => {
     await User.deleteMany({})
-
     const passwordHash = await bcrypt.hash('sekret', 10)
     const user = new User({ username: 'root', name: 'rootName', passwordHash })
-
     await user.save()
   })
+  */
 
   test('creation succeeds with a fresh username', async () => {
+
+    await User.deleteMany({})
+    let passwordHash = await bcrypt.hash('sekret', 10)
+    const user = new User({ username: 'root', name: 'rootName', passwordHash })
+    await user.save()
+
+
     const usersAtStart = await helper.usersInDb()
-    const passwordHash = await bcrypt.hash('salainen', 10)
+    //const passwordHash = await bcrypt.hash('salainen', 10)
+    passwordHash = await bcrypt.hash('salainen', 10)
 
     const newUser = {
       username: 'mluukkai',
@@ -44,10 +52,16 @@ describe('All tests relating to app-users', () => {
   })
 
   /**
-   * Tee myös testit, jotka varmistavat, että virheellisiä käyttäjiä ei luoda, ja että virheellisen käyttäjän 
+   * Tee myös testit, jotka varmistavat, että virheellisiä käyttäjiä ei luoda, ja että virheellisen käyttäjän
    * luomisoperaatioon vastaus on järkevä statuskoodin ja virheilmoituksen osalta.
    */
   test('creation fails with proper statuscode and message if username already taken', async () => {
+
+    await User.deleteMany({})
+    let passwordHash = await bcrypt.hash('sekret', 10)
+    const user = new User({ username: 'root', name: 'rootName', passwordHash })
+    await user.save()
+
     const usersAtStart = await helper.usersInDb()
 
     const newUser = {
