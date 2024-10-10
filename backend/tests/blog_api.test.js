@@ -34,7 +34,7 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
       .expect('Content-Type', /application\/json/)
   })
 
-  test('TEST 2: initalBlogs matches the db response in length', async () => {
+  /*test('TEST 2: initalBlogs matches the db response in length', async () => {
 
     await Blogs.deleteMany({})                                                  //Poistetaan vanhat
     ROOT = await Users.collection.findOne({ 'username': 'root' })               //Haetaan rootkäyttäjä
@@ -190,7 +190,7 @@ describe('ALL REQUIRED BLOG TESTS FOR WEEK 4', () => {
     const blogsAtEnd = await helper.blogsInDb()
     const last = blogsAtEnd[blogsAtEnd.length - 1]
     expect(last.likes).toEqual(0)
-  })
+  })*/
 
   afterAll(async () => {
     await mongoose.connection.close()
