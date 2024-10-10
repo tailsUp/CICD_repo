@@ -47,7 +47,7 @@ jobs:
       - name: test
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          TEST_MONGODB_URI: ${{ secrets.TEST_MONGO_URI }}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
           TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
           SECRET: ${{ secrets.SECRET }}
           PORT: ${{ secrets.PORT }}

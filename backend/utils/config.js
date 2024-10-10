@@ -10,6 +10,7 @@ const MONGODB_URI = process.env.NODE_ENV === 'test'
   : process.env.MONGODB_URI
 
 console.log('URI: ', MONGODB_URI)
+console.log('TEST: ', process.env.TEST_MONGODB_URI)
 
 module.exports = {
   MONGODB_URI,
