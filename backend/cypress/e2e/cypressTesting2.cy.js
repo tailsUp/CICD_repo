@@ -7,8 +7,11 @@ describe('BLOG LogIn', function() {
 
   it('link can be accessed', function() {
     cy.visit('http://localhost:3001')
+    cy.get('#btnNewBlogCreate').click()
     cy.get('#inputUsername').type('username 1')
     cy.get('#inputPassword').type('salasana')
     cy.get('#buttonLogin').click()
+    cy.contains('*** Logout ***')
+    cy.get('#buttonLogout').click()
   })
 })
