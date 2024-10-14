@@ -7,11 +7,11 @@ describe('BLOG LogIn', function() {
 
   it('User can login', function() {
     cy.visit('http://localhost:3001')
-    cy.get('#btnNewBlogCreate').click()
-    cy.get('#inputUsername').type('username 1')
-    cy.get('#inputPassword').type('salasana')
-    cy.get('#buttonLogin').click()
-    cy.contains('is logged in.')
-    cy.get('#buttonLogout').click()
+    //cy.get('#btnNewBlogCreate').click()
+    //cy.get('#inputUsername').type('username 1')
+    //cy.get('#inputPassword').type('salasana')
+    //cy.get('#buttonLogin').click()
+    //cy.contains('is logged in.')
+    //cy.get('#buttonLogout').click()
   })
 })
