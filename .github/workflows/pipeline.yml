@@ -42,7 +42,7 @@ jobs:
         run: npm install
       - name: Check style (lint)
         run: npm run eslint
-      - name: test
+      - name: JEST testing
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
@@ -63,6 +63,11 @@ jobs:
           command: npm run test:e2e
           start: npm run start
           wait-on: http://localhost:3001
+      - name: Trigger deployment
+        env:
+          deploy_url: ${{ secrets.DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
   tag_release:
     needs: [backend_deployment_pipeline]
     runs-on: ubuntu-20.04
