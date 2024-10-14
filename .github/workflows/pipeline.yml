@@ -102,3 +102,4 @@ jobs:
         with:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           message: "BUILD HAS FAILED"
+
