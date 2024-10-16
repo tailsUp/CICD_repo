@@ -95,10 +95,10 @@ jobs:
         uses: discord-actions/message@v2
         with:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "BUILD WAS SUCESFULL"
+          message: "CICD_REPO has succeeded"
       - name: FAILURE
         if: failure()
         uses: discord-actions/message@v2
         with:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "BUILD HAS FAILED"
+          message: "CICD_REPO has failed"
