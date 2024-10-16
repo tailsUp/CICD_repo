@@ -1,0 +1,39 @@
+name: Healthcheck pipeline
+
+#-cron: mm hh dom mon dow
+#mm     - minutes           - 0-59
+#hh     - hours             - 0-23
+#dom    - day of the month  - 1-31
+#mon    - month field       - 0-6
+# dow   - day of week       - 
+
+on:
+  schedule:
+    - cron: '00 11 * * *'
+
+jobs:
+  health_check:
+    steps:
+      - name: Health check
+        uses: jtalk/url-health-check-action@v4
+        with:
+          # Tarkistetaan pokedex url
+          url: https://full-stack-open-pokedex-snkr.onrender.com
+  health_check_notify_FALSE:
+    needs: [health_check]
+    if: ${{ health_check.result != 'failure'  }}
+    steps:
+      - name: Health check was success
+        uses: discord-actions/message@v2
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          message: "Scheduled check has reached BLOG-webpage."
+  health_check_notify_OK:
+    needs: [health_check]
+    if: ${{ health_check.result != 'success'  }}
+    steps:
+      - name: Health check was success
+        uses: discord-actions/message@v2
+        with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          message: "Scheduled check has not reached BLOG-webpage."

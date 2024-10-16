@@ -88,17 +88,17 @@ jobs:
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.70.0
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
       - name: SUCCESS
         if: success()
         uses: discord-actions/message@v2
         with:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "BUILD WAS SUCESFULL"
+          message: "CICD_REPO has succeeded"
       - name: FAILURE
         if: failure()
         uses: discord-actions/message@v2
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          message: "BUILD HAS FAILED"
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          message: "CICD_REPO has failed"
