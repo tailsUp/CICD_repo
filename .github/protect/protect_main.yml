@@ -1,0 +1,70 @@
+name: Protect main branch pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  MAIN_frontend:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: 'frontend'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies (npm install)
+        run: npm install
+      - name: Check style (lint)
+        run: npm run eslint
+      - name: build
+        run: npm run build
+  MAIN_backend:
+    needs: [MAIN_frontend]
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: 'backend'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies (npm install)
+        run: npm install
+      - name: Check style (lint)
+        run: npm run eslint
+      - name: JEST testing
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
+          SECRET: ${{ secrets.SECRET }}
+          PORT: ${{ secrets.PORT }}
+        run: npm run test
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          TEST_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
+          TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
+          SECRET: ${{ secrets.SECRET }}
+          PORT: ${{ secrets.PORT }}
+        with:
+          working-directory: 'backend'
+          command: npm run test:e2e
+          start: npm run start
+          wait-on: http://localhost:3001
+      - name: Trigger deployment
+        env:
+          deploy_url: ${{ secrets.DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
