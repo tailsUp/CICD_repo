@@ -12,7 +12,7 @@ name: Healthcheck pipeline
 
 on:
   schedule:
-    - cron: '50 21 * * *TZ=Europe/Helsinki '
+    - cron: '55 21 * * * TZ=Europe/Helsinki'
 
 jobs:
   health_check:
