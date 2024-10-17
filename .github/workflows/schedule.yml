@@ -7,9 +7,12 @@ name: Healthcheck pipeline
 #mon    - month field       - 0-6
 # dow   - day of week       - 
 
+#RON_TZ=Europe/Helsinki
+#0 9 * * * TZ=Europe/Helsinki
+
 on:
   schedule:
-    - cron: '00 21 * * *'
+    - cron: '50 21 * * *TZ=Europe/Helsinki '
 
 jobs:
   health_check:
