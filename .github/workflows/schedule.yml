@@ -9,7 +9,7 @@ name: Healthcheck pipeline
 
 on:
   schedule:
-    - cron: '00 15 * * *'
+    - cron: '00 21 * * *'
 
 jobs:
   health_check:
@@ -20,21 +20,38 @@ jobs:
         with:
           # Tarkistetaan BLOG_url
           url: https://cicd-repo.onrender.com/
-  health_check_notify_FALSE:
-    needs: [health_check]
-    if: ${{ health_check.result != 'failure'  }}
-    steps:
-      - name: Health check was success
-        uses: discord-actions/message@v2
+      - name: Notify success
+        uses: stegzilla/discord-notify@v4
+        if: success()
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "Scheduled check has reached BLOG-webpage."
-  health_check_notify_OK:
-    needs: [health_check]
-    if: ${{ health_check.result != 'success'  }}
-    steps:
-      - name: Health check was success
-        uses: discord-actions/message@v2
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Health check OK!
+          message: 'Scheduled check has reached BLOG-webpage.'
+      - name: Notify failure
+        uses: stegzilla/discord-notify@v4
+        if: failure()
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "Scheduled check has not reached BLOG-webpage."
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Health check FAIL!
+          message: 'Scheduled check has not reached BLOG-webpage.'
+
+
+      
+  #health_check_notify_FALSE:
+  #  needs: [health_check]
+  #  if: ${{ health_check.result != 'failure'  }}
+  #  steps:
+  #    - name: Health check was success
+  #      uses: discord-actions/message@v2
+  #      with:
+  #        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+  #        message: "Scheduled check has reached BLOG-webpage."
+  #health_check_notify_OK:
+  #  needs: [health_check]
+  #  if: ${{ health_check.result != 'success'  }}
+  #  steps:
+  #    - name: Health check was success
+  #      uses: discord-actions/message@v2
+  #      with:
+  #        webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+  #        message: "Scheduled check has not reached BLOG-webpage."
